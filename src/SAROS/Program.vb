@@ -11,7 +11,7 @@ Module Program
             GameTitle,
             New GameController(
                 New BagelQuestSettings(),
-                New BagelQuestContext(LoadFonts(), (ViewWidth, ViewHeight))),
+                New SAROSContext(LoadFonts(), (ViewWidth, ViewHeight))),
             (ViewWidth, ViewHeight),
             LoadHues(),
             LoadCommands(),

@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class BagelQuestContext
+Public Class SAROSContext
     Inherits UIContext(Of IWorldModel)
 
     Public Sub New(fontFilenames As IReadOnlyDictionary(Of String, String), viewSize As (Integer, Integer))

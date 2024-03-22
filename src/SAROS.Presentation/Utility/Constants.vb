@@ -4,7 +4,7 @@
     Public Const BagelQuestFont = "BagelQuestFont"
     Public Const ViewHeight = 216
     Public Const ViewWidth = 384
-    Public Const GameTitle = "Bagel Quest"
+    Public Const GameTitle = "Solitary Ancient Ruins of SPLORR!!"
 
     Friend Const ConfigFileName = "config.json"
     Friend Const ActionsText = "Actions"
