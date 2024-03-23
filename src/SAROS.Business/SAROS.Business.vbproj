@@ -4,7 +4,7 @@
     <RootNamespace>SAROS.Business</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>SAROS.Data=False,SAROS.Persistence=False,NLua=False,SPLORR.Game=False,System.IO=False,System.Runtime.CompilerServices=False,System.Text.Json=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,SAROS.Business=True</ImportedNamespaces>
+    <ImportedNamespaces>SAROS.Data=False,SAROS.Persistence=False,SPLORR.Game=False,System.IO=False,System.Runtime.CompilerServices=False,System.Text.Json=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,SAROS.Business=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,15 +23,10 @@
   <ItemGroup>
     <Import Include="SAROS.Data" />
     <Import Include="SAROS.Persistence" />
-    <Import Include="NLua" />
     <Import Include="SPLORR.Game" />
     <Import Include="System.IO" />
     <Import Include="System.Runtime.CompilerServices" />
     <Import Include="System.Text.Json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NLua" Version="1.6.3" />
   </ItemGroup>
 
 </Project>
