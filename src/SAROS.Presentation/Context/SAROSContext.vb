@@ -32,6 +32,7 @@ Public Class SAROSContext
         }
     Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
         Dim text = GameTitle
+        Me.Font("Room").WriteText(displayBuffer, (0, 0), ChrW(7), 15)
         Dim x = ViewWidth \ 2 - font.TextWidth(text) \ 2
         Dim y = ViewHeight \ 2 - font.Height \ 2
         With font

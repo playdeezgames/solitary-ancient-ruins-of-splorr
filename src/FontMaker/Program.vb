@@ -5,8 +5,9 @@ Imports AOS.UI
 
 Module Program
     Const InputFilename = "source.png"
-    Const CellWidth = 16
-    Const CellHeight = 16
+    Const OutputFilename = "..\..\..\..\SAROS\Content\Fonts\Room.json"
+    Const CellWidth = 384
+    Const CellHeight = 192
     Sub Main(args As String())
         Dim bmp = New Bitmap(InputFilename)
         Dim rows = (bmp.Height + 1) \ (CellHeight + 1)
@@ -40,6 +41,6 @@ Module Program
                 Next
             Next
         Next
-        File.WriteAllText(Path.GetFullPath("..\..\..\..\BagelQuest\Content\Fonts\BagelQuest.json"), JsonSerializer.Serialize(fontData))
+        File.WriteAllText(Path.GetFullPath(OutputFilename), JsonSerializer.Serialize(fontData))
     End Sub
 End Module

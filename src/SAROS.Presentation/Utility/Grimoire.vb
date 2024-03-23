@@ -1,4 +1,4 @@
-﻿Public Module Constants
+﻿Public Module Grimoire
     Public Const DefaultScreenWidth = ViewWidth * 3
     Public Const DefaultScreenHeight = ViewHeight * 3
     Public Const ViewHeight = 216
