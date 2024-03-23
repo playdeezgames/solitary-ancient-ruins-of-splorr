@@ -1,11 +1,12 @@
-﻿About Bagel Quest
+﻿About Solitary Ancient Ruins of SPLORR!!
 
 A Production of TheGrumpyGameDev
 
 Art:
-https://kenney.nl/assets/1-bit-pack
+https://vurmux.itch.io/urizen-onebit-tileset
 
-For A Game By Its Cover 2023
+For Dungeon Crawler Jam 2024
+https://itch.io/jam/dcjam2024
 
 Default keys.json:
 ```
