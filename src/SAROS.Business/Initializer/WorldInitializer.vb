@@ -1,16 +1,16 @@
 ﻿Friend Module WorldInitializer
     Const MazeColumns = 7
     Const MazeRows = 7
-    Private ReadOnly directions As IReadOnlyDictionary(Of Direction, MazeDirection(Of Direction)) =
-        New Dictionary(Of Direction, MazeDirection(Of Direction)) From
+    Private ReadOnly directions As IReadOnlyDictionary(Of String, MazeDirection(Of String)) =
+        New Dictionary(Of String, MazeDirection(Of String)) From
         {
-            {Direction.North, New MazeDirection(Of Direction)(Direction.South, 0, -1)},
-            {Direction.East, New MazeDirection(Of Direction)(Direction.West, 1, 0)},
-            {Direction.South, New MazeDirection(Of Direction)(Direction.North, 0, 1)},
-            {Direction.West, New MazeDirection(Of Direction)(Direction.East, -1, 0)}
+            {Direction.North, New MazeDirection(Of String)(Direction.South, 0, -1)},
+            {Direction.East, New MazeDirection(Of String)(Direction.West, 1, 0)},
+            {Direction.South, New MazeDirection(Of String)(Direction.North, 0, 1)},
+            {Direction.West, New MazeDirection(Of String)(Direction.East, -1, 0)}
         }
-    Friend Sub Initialize(world As IWorld(Of Direction))
-        Dim maze As New Maze(Of Direction)(MazeColumns, MazeRows, directions)
+    Friend Sub Initialize(world As IWorld)
+        Dim maze As New Maze(Of String)(MazeColumns, MazeRows, directions)
         maze.Generate()
         For Each column In Enumerable.Range(0, MazeColumns)
             For Each row In Enumerable.Range(0, MazeRows)

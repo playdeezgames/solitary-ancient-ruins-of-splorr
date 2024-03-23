@@ -1,5 +1,5 @@
-Public Interface IWorld(Of TDirection)
+Public Interface IWorld
     ReadOnly Property Serialized As String
-    Function CreateLocation(column As Integer, row As Integer) As ILocation(Of TDirection)
-    ReadOnly Property Locations As IEnumerable(Of ILocation(Of TDirection))
+    Function CreateLocation(column As Integer, row As Integer) As ILocation
+    ReadOnly Property Locations As IEnumerable(Of ILocation)
 End Interface
