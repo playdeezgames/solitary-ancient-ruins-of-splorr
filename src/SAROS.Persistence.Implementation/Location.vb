@@ -32,8 +32,12 @@
         LocationData.Doors(direction) = door
     End Sub
 
-    Public Sub AddCharacter(result As ICharacter) Implements ILocation.AddCharacter
-        LocationData.Characters.Add(result.Id)
+    Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
+        LocationData.Characters.Add(character.Id)
+    End Sub
+
+    Public Sub RemoveCharacter(character As ICharacter) Implements ILocation.RemoveCharacter
+        LocationData.Characters.Remove(character.Id)
     End Sub
 
     Public Function HasDoor(direction As String) As Boolean Implements ILocation.HasDoor

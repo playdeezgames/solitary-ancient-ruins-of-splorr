@@ -6,4 +6,5 @@
     Sub SetDoor(direction As String, door As String)
     Sub AddCharacter(result As ICharacter)
     Function HasDoor(direction As String) As Boolean
+    Sub RemoveCharacter(character As ICharacter)
 End Interface

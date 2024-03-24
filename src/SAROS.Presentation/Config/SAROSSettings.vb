@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text.Json
 
-Public Class BagelQuestSettings
+Public Class SAROSSettings
     Implements ISettings
     Sub New()
         Dim cfg = ReadConfig()
@@ -14,11 +14,11 @@ Public Class BagelQuestSettings
     Public Property FullScreen As Boolean Implements ISettings.FullScreen
     Public Property SfxVolume As Single Implements ISettings.SfxVolume
     Public Property MuxVolume As Single Implements ISettings.MuxVolume
-    Private Shared Function ReadConfig() As BagelQuestConfig
+    Private Shared Function ReadConfig() As SAROSConfig
         Try
-            Return JsonSerializer.Deserialize(Of BagelQuestConfig)(File.ReadAllText(ConfigFileName))
+            Return JsonSerializer.Deserialize(Of SAROSConfig)(File.ReadAllText(ConfigFileName))
         Catch ex As Exception
-            Return New BagelQuestConfig() With
+            Return New SAROSConfig() With
             {
                 .FullScreen = False,
                 .SfxVolume = 0.5,
@@ -32,7 +32,7 @@ Public Class BagelQuestSettings
         File.WriteAllText(
             ConfigFileName,
             JsonSerializer.Serialize(
-            New BagelQuestConfig With
+            New SAROSConfig With
             {
                 .SfxVolume = SfxVolume,
                 .MuxVolume = MuxVolume,

@@ -9,7 +9,7 @@ Module Program
         Using host As New Host(
             $"{GameTitle}: {GameSubtitle}",
             New GameController(
-                New BagelQuestSettings(),
+                New SAROSSettings(),
                 New SAROSContext(LoadFonts(), (ViewWidth, ViewHeight))),
             (ViewWidth, ViewHeight),
             LoadHues(),
