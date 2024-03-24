@@ -11,5 +11,6 @@ Public Class GameController
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
         SetState(BoilerplateState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.Lose, New LoseState(Me, AddressOf SetCurrentState, context))
     End Sub
 End Class

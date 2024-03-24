@@ -51,6 +51,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property IsInsane As Boolean Implements IWorldModel.IsInsane
+        Get
+            Return World.Avatar.Sanity <= 0
+        End Get
+    End Property
+
     Private Property World As IWorld
         Get
             Return _world

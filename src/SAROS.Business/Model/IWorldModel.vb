@@ -12,4 +12,5 @@
     ReadOnly Property Row As Integer
     ReadOnly Property Sanity As Integer
     ReadOnly Property MaximumSanity As Integer
+    ReadOnly Property IsInsane As Boolean
 End Interface
