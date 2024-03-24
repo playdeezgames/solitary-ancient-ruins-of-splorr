@@ -26,6 +26,10 @@
                 End If
             Next
         Next
-        world.SetAvatar(world.CreateCharacter(world.Locations.First, Direction.North, MaximumSanity))
+        world.SetAvatar(
+            world.CreateCharacter(
+                RNG.FromEnumerable(world.Locations),
+                RNG.FromEnumerable(Direction.All),
+                MaximumSanity))
     End Sub
 End Module
