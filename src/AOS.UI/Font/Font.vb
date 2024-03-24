@@ -13,6 +13,9 @@
         Next
     End Sub
     Public Sub WriteText(sink As IPixelSink, position As (Integer, Integer), text As String, hue As Integer)
+        If text Is Nothing Then
+            Return
+        End If
         For Each character In text
             Dim buffer = _glyphs(character)
             buffer.CopyTo(sink, position, hue)

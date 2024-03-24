@@ -31,5 +31,12 @@
                 RNG.FromEnumerable(world.Locations),
                 RNG.FromEnumerable(Direction.All),
                 MaximumSanity))
+        For Each trauma In Traumas.All
+            Dim location = RNG.FromEnumerable(world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma))
+            location.Trauma = trauma
+        Next
+        For Each location In world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma)
+            location.Trauma = RNG.FromEnumerable(Traumas.All)
+        Next
     End Sub
 End Module

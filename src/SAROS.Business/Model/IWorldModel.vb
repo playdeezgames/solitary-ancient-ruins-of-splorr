@@ -13,4 +13,5 @@
     ReadOnly Property Sanity As Integer
     ReadOnly Property MaximumSanity As Integer
     ReadOnly Property IsInsane As Boolean
+    ReadOnly Property Trauma As String
 End Interface

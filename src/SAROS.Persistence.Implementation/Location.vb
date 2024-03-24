@@ -24,6 +24,27 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasCharacter As Boolean Implements ILocation.HasCharacter
+        Get
+            Return LocationData.Characters.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property HasTrauma As Boolean Implements ILocation.HasTrauma
+        Get
+            Return Not String.IsNullOrEmpty(Trauma)
+        End Get
+    End Property
+
+    Public Property Trauma As String Implements ILocation.Trauma
+        Get
+            Return LocationData.Trauma
+        End Get
+        Set(value As String)
+            LocationData.Trauma = value
+        End Set
+    End Property
+
     Public Sub SetNeighbor(direction As String, nextLocation As ILocation) Implements ILocation.SetNeighbor
         LocationData.Neighbors(direction) = nextLocation.Id
     End Sub

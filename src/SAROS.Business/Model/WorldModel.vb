@@ -57,6 +57,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Trauma As String Implements IWorldModel.Trauma
+        Get
+            Return World.Avatar.Location.Trauma
+        End Get
+    End Property
+
     Private Property World As IWorld
         Get
             Return _world

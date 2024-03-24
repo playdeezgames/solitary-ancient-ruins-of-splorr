@@ -7,4 +7,7 @@
     Sub AddCharacter(result As ICharacter)
     Function HasDoor(direction As String) As Boolean
     Sub RemoveCharacter(character As ICharacter)
+    ReadOnly Property HasCharacter As Boolean
+    ReadOnly Property HasTrauma As Boolean
+    Property Trauma As String
 End Interface

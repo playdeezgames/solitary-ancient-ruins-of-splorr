@@ -15,5 +15,6 @@
         displayBuffer.Fill(0)
         Dim uifont = Context.Font(UIFontName)
         uifont.WriteText(displayBuffer, (0, 0), "You have gone mad!", 15)
+        uifont.WriteText(displayBuffer, (0, 8), "Nothing matters.", 15)
     End Sub
 End Class

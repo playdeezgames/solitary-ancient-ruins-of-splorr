@@ -27,8 +27,8 @@ Friend Class NavigationState
         roomFont.WriteText(displayBuffer, (0, 0), Context.Model.RoomString, 15)
 
         Dim uifont = Context.Font(UIFontName)
-        uifont.WriteText(displayBuffer, (0, 192), $"({Context.Model.Column},{Context.Model.Row})", 7)
-        uifont.WriteText(displayBuffer, (0, 200), Context.Model.Facing, 7)
+        uifont.WriteText(displayBuffer, (0, 192), $"({Context.Model.Column},{Context.Model.Row}) {Context.Model.Facing}", 7)
+        uifont.WriteText(displayBuffer, (0, 200), Context.Model.Trauma, 7)
         uifont.WriteText(displayBuffer, (0, 208), $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}", 7)
     End Sub
 End Class
