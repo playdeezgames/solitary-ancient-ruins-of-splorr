@@ -26,14 +26,16 @@
                 End If
             Next
         Next
-        world.SetAvatar(
-            world.CreateCharacter(
+        Dim character = world.CreateCharacter(
                 RNG.FromEnumerable(world.Locations),
                 RNG.FromEnumerable(Direction.All),
-                MaximumSanity))
+                MaximumSanity)
+        world.SetAvatar(
+            character)
         For Each trauma In Traumas.All
             Dim location = RNG.FromEnumerable(world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma))
             location.Trauma = trauma
+            character.SetTriggerLevel(trauma, RNG.RollDice("4d6"))
         Next
         For Each location In world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma)
             location.Trauma = RNG.FromEnumerable(Traumas.All)

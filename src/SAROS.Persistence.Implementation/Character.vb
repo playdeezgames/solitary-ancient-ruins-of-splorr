@@ -48,4 +48,12 @@
             Return CharacterData.MaximumSanity
         End Get
     End Property
+
+    Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
+        CharacterData.TriggerLevels(trauma) = triggerLevel
+    End Sub
+
+    Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel
+        Return CharacterData.TriggerLevels(trauma)
+    End Function
 End Class

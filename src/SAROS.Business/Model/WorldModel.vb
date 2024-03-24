@@ -63,6 +63,15 @@
         End Get
     End Property
 
+    Public ReadOnly Property TriggerLevel As Integer Implements IWorldModel.TriggerLevel
+        Get
+            If String.IsNullOrEmpty(Trauma) Then
+                Return 0
+            End If
+            Return World.Avatar.GetTriggerLevel(Trauma)
+        End Get
+    End Property
+
     Private Property World As IWorld
         Get
             Return _world
