@@ -10,4 +10,6 @@
     ReadOnly Property RoomString As String
     ReadOnly Property Column As Integer
     ReadOnly Property Row As Integer
+    ReadOnly Property Sanity As Integer
+    ReadOnly Property MaximumSanity As Integer
 End Interface

@@ -39,6 +39,18 @@
         End Get
     End Property
 
+    Public ReadOnly Property Sanity As Integer Implements IWorldModel.Sanity
+        Get
+            Return World.Avatar.Sanity
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumSanity As Integer Implements IWorldModel.MaximumSanity
+        Get
+            Return World.Avatar.MaximumSanity
+        End Get
+    End Property
+
     Private Property World As IWorld
         Get
             Return _world

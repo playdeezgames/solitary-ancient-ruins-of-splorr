@@ -40,12 +40,14 @@ Public Class World
         Return New Location(WorldData, locationId)
     End Function
 
-    Public Function CreateCharacter(location As ILocation, facing As String) As ICharacter Implements IWorld.CreateCharacter
+    Public Function CreateCharacter(location As ILocation, facing As String, maximumSanity As Integer) As ICharacter Implements IWorld.CreateCharacter
         Dim characterId = WorldData.Characters.Count
         WorldData.Characters.Add(New CharacterData With
                                 {
                                     .LocationId = location.Id,
-                                    .Facing = facing
+                                    .Facing = facing,
+                                    .MaximumSanity = maximumSanity,
+                                    .Sanity = maximumSanity
                                 })
         Dim result = New Character(WorldData, characterId)
         location.AddCharacter(result)

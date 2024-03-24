@@ -1,6 +1,7 @@
 ﻿Friend Module WorldInitializer
     Const MazeColumns = 7
     Const MazeRows = 7
+    Const MaximumSanity = 99
     Private ReadOnly directions As IReadOnlyDictionary(Of String, MazeDirection(Of String)) =
         Direction.All.ToDictionary(
             Function(x) x,
@@ -25,6 +26,6 @@
                 End If
             Next
         Next
-        world.SetAvatar(world.CreateCharacter(world.Locations.First, Direction.North))
+        world.SetAvatar(world.CreateCharacter(world.Locations.First, Direction.North, MaximumSanity))
     End Sub
 End Module

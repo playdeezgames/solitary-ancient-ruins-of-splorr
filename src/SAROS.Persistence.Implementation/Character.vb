@@ -33,4 +33,16 @@
             CharacterData.Facing = value
         End Set
     End Property
+
+    Public ReadOnly Property Sanity As Integer Implements ICharacter.Sanity
+        Get
+            Return CharacterData.Sanity
+        End Get
+    End Property
+
+    Public ReadOnly Property MaximumSanity As Integer Implements ICharacter.MaximumSanity
+        Get
+            Return CharacterData.MaximumSanity
+        End Get
+    End Property
 End Class
