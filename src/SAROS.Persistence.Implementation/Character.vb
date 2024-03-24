@@ -34,10 +34,13 @@
         End Set
     End Property
 
-    Public ReadOnly Property Sanity As Integer Implements ICharacter.Sanity
+    Public Property Sanity As Integer Implements ICharacter.Sanity
         Get
             Return CharacterData.Sanity
         End Get
+        Set(value As Integer)
+            CharacterData.Sanity = Math.Clamp(value, 0, MaximumSanity)
+        End Set
     End Property
 
     Public ReadOnly Property MaximumSanity As Integer Implements ICharacter.MaximumSanity

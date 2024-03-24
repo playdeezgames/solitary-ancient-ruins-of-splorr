@@ -90,6 +90,7 @@
             Dim nextRow = location.Row + Direction.GetDeltaY(facing)
             Dim nextLocation = World.Locations.Single(Function(l) l.Column = nextColumn AndAlso l.Row = nextRow)
             character.Location = nextLocation
+            character.Sanity -= 1
         End If
     End Sub
 End Class
