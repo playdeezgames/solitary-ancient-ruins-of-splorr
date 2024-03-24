@@ -72,21 +72,10 @@
     Public Sub MoveAhead() Implements IWorldModel.MoveAhead
         Dim character = World.Avatar
         Dim location = character.Location
-        If location.HasDoor(character.AheadDirection) Then
-            Dim nextColumn = location.Column
-            Dim nextRow = location.Row
-            Select Case character.AheadDirection
-                Case Direction.North
-                    nextRow -= 1
-                Case Direction.East
-                    nextColumn += 1
-                Case Direction.South
-                    nextRow += 1
-                Case Direction.West
-                    nextColumn -= 1
-                Case Else
-                    Throw New NotImplementedException
-            End Select
+        Dim facing = character.AheadDirection
+        If location.HasDoor(facing) Then
+            Dim nextColumn = location.Column + Direction.GetDeltaX(facing)
+            Dim nextRow = location.Row + Direction.GetDeltaY(facing)
             Dim nextLocation = World.Locations.Single(Function(l) l.Column = nextColumn AndAlso l.Row = nextRow)
             character.Location = nextLocation
         End If

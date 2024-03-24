@@ -5,32 +5,10 @@
     End Function
     <Extension>
     Function LeftDirection(character As ICharacter) As String
-        Select Case character.Facing
-            Case Direction.North
-                Return Direction.West
-            Case Direction.East
-                Return Direction.North
-            Case Direction.South
-                Return Direction.East
-            Case Direction.West
-                Return Direction.South
-            Case Else
-                Throw New NotImplementedException
-        End Select
+        Return Direction.GetLeft(character.Facing)
     End Function
     <Extension>
     Function RightDirection(character As ICharacter) As String
-        Select Case character.Facing
-            Case Direction.North
-                Return Direction.East
-            Case Direction.East
-                Return Direction.South
-            Case Direction.South
-                Return Direction.West
-            Case Direction.West
-                Return Direction.North
-            Case Else
-                Throw New NotImplementedException
-        End Select
+        Return Direction.GetRight(character.Facing)
     End Function
 End Module
