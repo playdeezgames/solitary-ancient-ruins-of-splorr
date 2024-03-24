@@ -20,12 +20,15 @@
         For Each location In world.Locations
             Dim mazeCell = maze.GetCell(location.Column, location.Row)
             For Each direction In mazeCell.Directions
-                Dim nextColumn = location.Column + directions(direction).DeltaX
-                Dim nextRow = location.Row + directions(direction).DeltaY
-                Dim nextLocation = world.Locations.Single(Function(x) x.Column = nextColumn AndAlso x.Row = nextRow)
-                location.SetNeighbor(direction, nextLocation)
+                If mazeCell.GetDoor(direction).Open Then
+                    Dim nextColumn = location.Column + directions(direction).DeltaX
+                    Dim nextRow = location.Row + directions(direction).DeltaY
+                    Dim nextLocation = world.Locations.Single(Function(x) x.Column = nextColumn AndAlso x.Row = nextRow)
+                    location.SetNeighbor(direction, nextLocation)
+                    location.SetDoor(direction, Door.Open)
+                End If
             Next
         Next
-        'TODO: create PC
+        world.SetAvatar(world.CreateCharacter(world.Locations.First, Direction.North))
     End Sub
 End Module

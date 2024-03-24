@@ -4,6 +4,7 @@
     Public Const ViewHeight = 216
     Public Const ViewWidth = 384
     Public Const GameTitle = "Solitary Ancient Ruins of SPLORR!!"
+    Public Const GameSubtitle = "The Cosmic Horror of Infinity"
 
     Friend Const ConfigFileName = "config.json"
     Friend Const ContinueText = "Continue"

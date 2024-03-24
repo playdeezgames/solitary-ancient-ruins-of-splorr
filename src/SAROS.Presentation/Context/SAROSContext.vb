@@ -30,11 +30,10 @@ Public Class SAROSContext
             (1, 1, 13),
             (0, 0, 6)
         }
-    Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
+    Private Sub ShowTitle(displayBuffer As IPixelSink, font As Font)
         Dim text = GameTitle
-        Me.Font("Room").WriteText(displayBuffer, (0, 0), ChrW(7), 15)
         Dim x = ViewWidth \ 2 - font.TextWidth(text) \ 2
-        Dim y = ViewHeight \ 2 - font.Height \ 2
+        Dim y = ViewHeight \ 2 - font.Height * 3 \ 2
         With font
             For Each deltaAndColor In DeltasAndColor
                 .WriteText(
@@ -44,7 +43,25 @@ Public Class SAROSContext
                     deltaAndColor.hue)
             Next
         End With
+    End Sub
+    Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
+        Me.Font("Room").WriteText(displayBuffer, (0, 0), ChrW(7), 15)
+        ShowTitle(displayBuffer, font)
+        ShowSubtitle(displayBuffer, font)
         ShowStatusBar(displayBuffer, font, ControlsText(ContinueText, Nothing), 0, 7)
+    End Sub
+
+    Private Sub ShowSubtitle(displayBuffer As IPixelSink, font As Font)
+        Dim text = GameSubtitle
+        Dim x = ViewWidth \ 2 - font.TextWidth(text) \ 2
+        Dim y = ViewHeight \ 2 + font.Height * 3 \ 2
+        With font
+            .WriteText(
+                    displayBuffer,
+                    (x, y),
+                    text,
+                    8)
+        End With
     End Sub
 
     Private ReadOnly aboutLines As IDictionary(Of Integer, (String, Integer)) =

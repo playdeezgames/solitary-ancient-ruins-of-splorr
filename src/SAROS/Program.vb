@@ -1,14 +1,13 @@
 Imports System.IO
-Imports System.Security.Cryptography
 Imports System.Text.Json
 Imports AOS.Presentation
-Imports SAROS.Presentation
 Imports Microsoft.Xna.Framework
 Imports Microsoft.Xna.Framework.Input
+Imports SAROS.Presentation
 Module Program
     Sub Main(args As String())
         Using host As New Host(
-            GameTitle,
+            $"{GameTitle}: {GameSubtitle}",
             New GameController(
                 New BagelQuestSettings(),
                 New SAROSContext(LoadFonts(), (ViewWidth, ViewHeight))),
