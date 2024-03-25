@@ -27,7 +27,9 @@
             Dim y = row * cellHeight
             For Each column In Enumerable.Range(0, WorldModel.BoardColumns)
                 Dim x = column * cellWidth
-                If Context.Model.GetBoardCell(column, row) Then
+                If Not Context.Model.IsBoardCellVisible(column, row) Then
+                    uifont.WriteText(displayBuffer, (x, y), "?", 7)
+                ElseIf Context.Model.IsBoardCellTrigger(column, row) Then
                     uifont.WriteText(displayBuffer, (x, y), "X", 4)
                 Else
                     uifont.WriteText(displayBuffer, (x, y), " ", 2)

@@ -7,11 +7,12 @@
     Sub TurnRight()
     Sub MoveAhead()
     Sub BeginCombat(trauma As String)
-    Function GetBoardCell(column As Integer, row As Integer) As Boolean
+    Function IsBoardCellTrigger(column As Integer, row As Integer) As Boolean
     Sub PreviousBoardRow()
     Sub NextBoardRow()
     Sub EnemyMove()
     Sub CompleteCombat()
+    Function IsBoardCellVisible(column As Integer, row As Integer) As Boolean
     ReadOnly Property BoardRow As Integer
     ReadOnly Property BoardColumn As Integer
     ReadOnly Property Facing As String

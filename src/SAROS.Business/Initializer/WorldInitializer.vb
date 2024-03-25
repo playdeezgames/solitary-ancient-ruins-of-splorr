@@ -36,6 +36,7 @@
             Dim location = RNG.FromEnumerable(world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma))
             location.Trauma = trauma
             character.SetTriggerLevel(trauma, RNG.RollDice("4d6"))
+            character.SetAwarenessLevel(trauma, 0)
         Next
         For Each location In world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma)
             location.Trauma = RNG.FromEnumerable(Traumas.All)

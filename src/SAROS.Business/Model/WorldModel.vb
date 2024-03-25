@@ -3,11 +3,16 @@
     Public Const BoardColumns = 5
     Public Const BoardRows = 5
     Public Const FilledCellMaximum = BoardColumns * BoardRows - 1
-    Private ReadOnly board(BoardColumns, BoardRows) As Boolean
+    Private ReadOnly board(BoardColumns, BoardRows) As BoardCell
 
     Private _world As IWorld
     Sub New()
         BoardRow = BoardRows \ 2
+        For Each y In Enumerable.Range(0, BoardRows)
+            For Each x In Enumerable.Range(0, BoardColumns)
+                board(x, y) = New BoardCell
+            Next
+        Next
     End Sub
 
     Public ReadOnly Property RoomString As String Implements IWorldModel.RoomString
@@ -130,18 +135,28 @@
         BoardColumn = BoardColumns
         For Each y In Enumerable.Range(0, BoardRows)
             For Each x In Enumerable.Range(0, BoardColumns)
-                board(x, y) = False
+                board(x, y).Trigger = False
+                board(x, y).Visible = False
             Next
         Next
-        For Each dummy In Enumerable.Range(0, Math.Min(World.Avatar.GetTriggerLevel(trauma), FilledCellMaximum))
+        For Each dummy In Enumerable.Range(0, World.Avatar.GetAwarenessLevel(trauma))
             Dim x As Integer
             Dim y As Integer
             Do
                 x = RNG.FromRange(0, BoardColumns - 1)
                 y = RNG.FromRange(0, BoardRows - 1)
-            Loop Until Not board(x, y)
-            board(x, y) = True
+            Loop Until Not board(x, y).Visible
+            board(x, y).Visible = True
         Next
+        For Each dummy In Enumerable.Range(0, Math.Min(World.Avatar.GetTriggerLevel(trauma), FilledCellMaximum))
+                Dim x As Integer
+                Dim y As Integer
+                Do
+                    x = RNG.FromRange(0, BoardColumns - 1)
+                    y = RNG.FromRange(0, BoardRows - 1)
+                Loop Until Not board(x, y).Trigger
+                board(x, y).Trigger = True
+            Next
     End Sub
 
     Public Sub PreviousBoardRow() Implements IWorldModel.PreviousBoardRow
@@ -156,21 +171,34 @@
         BoardColumn = RNG.FromRange(0, BoardColumns - 1)
     End Sub
 
-    Private ReadOnly Property CombatDamage As Integer
+    Private ReadOnly Property EnemyCombatDamage As Integer
         Get
-            Return Enumerable.Range(0, BoardRows).Where(Function(r) board(BoardColumn, r)).Count
+            Return Enumerable.Range(0, BoardRows).Where(Function(r) board(BoardColumn, r).Trigger).Count
+        End Get
+    End Property
+
+    Private ReadOnly Property PlayerCombatDamage As Integer
+        Get
+            Return Enumerable.Range(0, BoardColumns).Where(Function(c) board(c, BoardRow).Trigger).Count
         End Get
     End Property
 
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
-        If GetBoardCell(BoardColumn, BoardRow) Then
-            World.Avatar.Sanity -= CombatDamage
+        If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
+            World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
+        End If
+        If IsBoardCellTrigger(BoardColumn, BoardRow) Then
+            World.Avatar.Sanity -= EnemyCombatDamage
         Else
-            World.Avatar.SetTriggerLevel(Trauma, TriggerLevel - CombatDamage)
+            World.Avatar.SetTriggerLevel(Trauma, TriggerLevel - PlayerCombatDamage)
         End If
     End Sub
 
-    Public Function GetBoardCell(column As Integer, row As Integer) As Boolean Implements IWorldModel.GetBoardCell
-        Return board(column, row)
+    Public Function IsBoardCellTrigger(column As Integer, row As Integer) As Boolean Implements IWorldModel.IsBoardCellTrigger
+        Return board(column, row).Trigger
+    End Function
+
+    Public Function IsBoardCellVisible(column As Integer, row As Integer) As Boolean Implements IWorldModel.IsBoardCellVisible
+        Return board(column, row).Visible
     End Function
 End Class
