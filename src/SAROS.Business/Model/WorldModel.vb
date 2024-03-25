@@ -131,6 +131,10 @@
     End Sub
 
     Public Sub BeginCombat(trauma As String) Implements IWorldModel.BeginCombat
+        If PreviousCombat = trauma Then
+            World.Avatar.SetEscalation(trauma, World.Avatar.GetEscalation(trauma) + 1)
+        End If
+        PreviousCombat = trauma
         BoardRow = BoardRows \ 2
         BoardColumn = BoardColumns
         For Each y In Enumerable.Range(0, BoardRows)
@@ -149,14 +153,14 @@
             board(x, y).Visible = True
         Next
         For Each dummy In Enumerable.Range(0, Math.Min(World.Avatar.GetTriggerLevel(trauma), FilledCellMaximum))
-                Dim x As Integer
-                Dim y As Integer
-                Do
-                    x = RNG.FromRange(0, BoardColumns - 1)
-                    y = RNG.FromRange(0, BoardRows - 1)
-                Loop Until Not board(x, y).Trigger
-                board(x, y).Trigger = True
-            Next
+            Dim x As Integer
+            Dim y As Integer
+            Do
+                x = RNG.FromRange(0, BoardColumns - 1)
+                y = RNG.FromRange(0, BoardRows - 1)
+            Loop Until Not board(x, y).Trigger
+            board(x, y).Trigger = True
+        Next
     End Sub
 
     Public Sub PreviousBoardRow() Implements IWorldModel.PreviousBoardRow
@@ -180,6 +184,17 @@
     Private ReadOnly Property PlayerCombatDamage As Integer
         Get
             Return Enumerable.Range(0, BoardColumns).Where(Function(c) board(c, BoardRow).Trigger).Count
+        End Get
+    End Property
+
+    Public Property PreviousCombat As String Implements IWorldModel.PreviousCombat
+
+    Public ReadOnly Property Escalation As Integer Implements IWorldModel.Escalation
+        Get
+            If String.IsNullOrEmpty(Trauma) Then
+                Return 0
+            End If
+            Return World.Avatar.GetEscalation(Trauma)
         End Get
     End Property
 

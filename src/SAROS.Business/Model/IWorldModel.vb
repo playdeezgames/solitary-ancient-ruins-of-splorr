@@ -23,5 +23,7 @@
     ReadOnly Property MaximumSanity As Integer
     ReadOnly Property IsInsane As Boolean
     ReadOnly Property Trauma As String
+    ReadOnly Property PreviousCombat As String
     ReadOnly Property TriggerLevel As Integer
+    ReadOnly Property Escalation As Integer
 End Interface

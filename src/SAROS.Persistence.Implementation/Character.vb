@@ -57,11 +57,19 @@
         CharacterData.AwarenessLevels(trauma) = awarenessLevel
     End Sub
 
+    Public Sub SetEscalation(trauma As String, escalation As Integer) Implements ICharacter.SetEscalation
+        CharacterData.Escalations(trauma) = escalation
+    End Sub
+
     Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel
         Return CharacterData.TriggerLevels(trauma)
     End Function
 
     Public Function GetAwarenessLevel(trauma As String) As Integer Implements ICharacter.GetAwarenessLevel
         Return CharacterData.AwarenessLevels(trauma)
+    End Function
+
+    Public Function GetEscalation(trauma As String) As Integer Implements ICharacter.GetEscalation
+        Return CharacterData.Escalations(trauma)
     End Function
 End Class

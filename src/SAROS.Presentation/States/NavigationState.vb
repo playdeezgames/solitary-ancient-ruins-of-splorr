@@ -30,7 +30,7 @@ Friend Class NavigationState
 
         Dim uifont = Context.Font(UIFontName)
         uifont.WriteText(displayBuffer, (0, 192), $"({Context.Model.Column},{Context.Model.Row}) {Context.Model.Facing}", 7)
-        uifont.WriteText(displayBuffer, (0, 200), $"{Context.Model.Trauma} {Context.Model.TriggerLevel}", 7)
+        uifont.WriteText(displayBuffer, (0, 200), $"{Context.Model.Trauma} {Context.Model.TriggerLevel} {Context.Model.Escalation}", 7)
         uifont.WriteText(displayBuffer, (0, 208), $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}", 7)
     End Sub
 End Class
