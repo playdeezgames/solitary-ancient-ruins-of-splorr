@@ -9,6 +9,8 @@ Friend Class NavigationState
 
     Public Overrides Sub HandleCommand(cmd As String)
         Select Case cmd
+            Case Command.A
+                SetState(GameState.ActionMenu)
             Case Command.B
                 SetState(BoilerplateState.GameMenu)
             Case Command.Left
