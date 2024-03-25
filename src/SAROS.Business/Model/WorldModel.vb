@@ -6,6 +6,9 @@
     Private ReadOnly board(BoardColumns, BoardRows) As Boolean
 
     Private _world As IWorld
+    Sub New()
+        BoardRow = BoardRows \ 2
+    End Sub
 
     Public ReadOnly Property RoomString As String Implements IWorldModel.RoomString
         Get
@@ -76,6 +79,10 @@
         End Get
     End Property
 
+    Public Property BoardRow As Integer Implements IWorldModel.BoardRow
+
+    Public Property BoardColumn As Integer Implements IWorldModel.BoardColumn
+
     Private Property World As IWorld
         Get
             Return _world
@@ -115,11 +122,12 @@
             Dim nextRow = location.Row + Direction.GetDeltaY(facing)
             Dim nextLocation = World.Locations.Single(Function(l) l.Column = nextColumn AndAlso l.Row = nextRow)
             character.Location = nextLocation
-            character.Sanity -= 1
         End If
     End Sub
 
-    Public Sub CreateBoard(trauma As String) Implements IWorldModel.CreateBoard
+    Public Sub BeginCombat(trauma As String) Implements IWorldModel.BeginCombat
+        BoardRow = BoardRows \ 2
+        BoardColumn = BoardColumns
         For Each y In Enumerable.Range(0, BoardRows)
             For Each x In Enumerable.Range(0, BoardColumns)
                 board(x, y) = False
@@ -134,6 +142,32 @@
             Loop Until Not board(x, y)
             board(x, y) = True
         Next
+    End Sub
+
+    Public Sub PreviousBoardRow() Implements IWorldModel.PreviousBoardRow
+        BoardRow = (BoardRow + BoardRows - 1) Mod BoardRows
+    End Sub
+
+    Public Sub NextBoardRow() Implements IWorldModel.NextBoardRow
+        BoardRow = (BoardRow + 1) Mod BoardRows
+    End Sub
+
+    Public Sub EnemyMove() Implements IWorldModel.EnemyMove
+        BoardColumn = RNG.FromRange(0, BoardColumns - 1)
+    End Sub
+
+    Private ReadOnly Property CombatDamage As Integer
+        Get
+            Return Enumerable.Range(0, BoardRows).Where(Function(r) board(BoardColumn, r)).Count
+        End Get
+    End Property
+
+    Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
+        If GetBoardCell(BoardColumn, BoardRow) Then
+            World.Avatar.Sanity -= CombatDamage
+        Else
+            World.Avatar.SetTriggerLevel(Trauma, TriggerLevel - CombatDamage)
+        End If
     End Sub
 
     Public Function GetBoardCell(column As Integer, row As Integer) As Boolean Implements IWorldModel.GetBoardCell

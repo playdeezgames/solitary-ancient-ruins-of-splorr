@@ -6,8 +6,14 @@
     Sub TurnLeft()
     Sub TurnRight()
     Sub MoveAhead()
-    Sub CreateBoard(trauma As String)
+    Sub BeginCombat(trauma As String)
     Function GetBoardCell(column As Integer, row As Integer) As Boolean
+    Sub PreviousBoardRow()
+    Sub NextBoardRow()
+    Sub EnemyMove()
+    Sub CompleteCombat()
+    ReadOnly Property BoardRow As Integer
+    ReadOnly Property BoardColumn As Integer
     ReadOnly Property Facing As String
     ReadOnly Property RoomString As String
     ReadOnly Property Column As Integer

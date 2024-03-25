@@ -13,5 +13,6 @@ Public Class GameController
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Lose, New LoseState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Combat, New CombatState(Me, AddressOf SetCurrentState, context))
+        SetState(GameState.CombatResult, New CombatResultState(Me, AddressOf SetCurrentState, context))
     End Sub
 End Class

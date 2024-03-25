@@ -6,15 +6,27 @@
     End Sub
 
     Public Overrides Sub HandleCommand(cmd As String)
+        Select Case cmd
+            Case Command.Up
+                Context.Model.PreviousBoardRow()
+            Case Command.Down
+                Context.Model.NextBoardRow()
+            Case Command.A
+                Context.Model.EnemyMove()
+                SetState(GameState.CombatResult)
+        End Select
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill(0)
         Dim uifont = Context.Font(UIFontName)
+        Dim cellWidth = uifont.TextWidth(" ")
+        Dim cellHeight = uifont.Height
+        displayBuffer.Fill((0, cellHeight * Context.Model.BoardRow), (cellWidth * WorldModel.BoardColumns, cellHeight), 1)
         For Each row In Enumerable.Range(0, WorldModel.BoardRows)
-            Dim y = row * uifont.Height
+            Dim y = row * cellHeight
             For Each column In Enumerable.Range(0, WorldModel.BoardColumns)
-                Dim x = column * uifont.TextWidth(" ")
+                Dim x = column * cellWidth
                 If Context.Model.GetBoardCell(column, row) Then
                     uifont.WriteText(displayBuffer, (x, y), "X", 4)
                 Else
@@ -25,7 +37,7 @@
     End Sub
 
     Public Overrides Sub OnStart()
-        Context.Model.CreateBoard(Context.Model.Trauma)
+        Context.Model.BeginCombat(Context.Model.Trauma)
         MyBase.OnStart()
     End Sub
 End Class
