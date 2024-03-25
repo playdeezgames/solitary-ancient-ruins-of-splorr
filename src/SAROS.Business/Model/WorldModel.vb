@@ -1,5 +1,9 @@
 ﻿Public Class WorldModel
     Implements IWorldModel
+    Public Const BoardColumns = 5
+    Public Const BoardRows = 5
+    Public Const FilledCellMaximum = BoardColumns * BoardRows - 1
+    Private ReadOnly board(BoardColumns, BoardRows) As Boolean
 
     Private _world As IWorld
 
@@ -114,4 +118,25 @@
             character.Sanity -= 1
         End If
     End Sub
+
+    Public Sub CreateBoard(trauma As String) Implements IWorldModel.CreateBoard
+        For Each y In Enumerable.Range(0, BoardRows)
+            For Each x In Enumerable.Range(0, BoardColumns)
+                board(x, y) = False
+            Next
+        Next
+        For Each dummy In Enumerable.Range(0, Math.Min(World.Avatar.GetTriggerLevel(trauma), FilledCellMaximum))
+            Dim x As Integer
+            Dim y As Integer
+            Do
+                x = RNG.FromRange(0, BoardColumns - 1)
+                y = RNG.FromRange(0, BoardRows - 1)
+            Loop Until Not board(x, y)
+            board(x, y) = True
+        Next
+    End Sub
+
+    Public Function GetBoardCell(column As Integer, row As Integer) As Boolean Implements IWorldModel.GetBoardCell
+        Return board(column, row)
+    End Function
 End Class
