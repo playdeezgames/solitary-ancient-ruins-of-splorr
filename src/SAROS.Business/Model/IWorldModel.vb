@@ -31,4 +31,5 @@
     Function GetItemTypeName(itemType As String) As String
     Sub PickUpItems(itemType As String)
     ReadOnly Property HasInventory As Boolean
+    ReadOnly Property Inventory As IReadOnlyDictionary(Of String, Integer)
 End Interface

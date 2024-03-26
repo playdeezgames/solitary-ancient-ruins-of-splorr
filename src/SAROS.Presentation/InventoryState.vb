@@ -1,17 +1,15 @@
-﻿Friend Class GroundState
+﻿Friend Class InventoryState
     Inherits BasePickerState(Of IWorldModel, String)
-    Const GoBackItem = "GoBack"
+    Const GoBackItem As String = "GoBack"
+
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IWorldModel))
-        MyBase.New(parent, setState, context, "On the Ground", context.ControlsText("Pick Up", "Cancel"), GameState.Navigation)
+        MyBase.New(parent, setState, context, "Inventory", context.ControlsText("Use", "Cancel"), GameState.ActionMenu)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2
             Case GoBackItem
-                SetState(GameState.Navigation)
-            Case Else
-                Context.Model.PickUpItems(value.Item2)
-                SetState(GameState.Navigation)
+                SetState(GameState.ActionMenu)
         End Select
     End Sub
 
@@ -20,7 +18,7 @@
             {
                 ("Go Back", GoBackItem)
             }
-        result.AddRange(Context.Model.GroundItems.Select(Function(x) ($"{Context.Model.GetItemTypeName(x.Key)} x{x.Value}", x.Key)))
+        result.AddRange(Context.Model.Inventory.Select(Function(x) ($"{Context.Model.GetItemTypeName(x.Key)} x{x.Value}", x.Key)))
         Return result
     End Function
 End Class

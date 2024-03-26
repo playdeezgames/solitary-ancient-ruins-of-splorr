@@ -216,6 +216,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Inventory As IReadOnlyDictionary(Of String, Integer) Implements IWorldModel.Inventory
+        Get
+            Return World.Avatar.Items.GroupBy(Function(x) x.ItemType).ToDictionary(Function(x) x.Key, Function(x) x.Count)
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)

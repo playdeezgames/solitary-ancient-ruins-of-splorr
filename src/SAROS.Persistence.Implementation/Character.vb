@@ -55,6 +55,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements ICharacter.Items
+        Get
+            Return CharacterData.Items.Select(Function(x) New Item(WorldData, x))
+        End Get
+    End Property
+
     Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
         CharacterData.TriggerLevels(trauma) = triggerLevel
     End Sub
