@@ -4,6 +4,7 @@
     Property Facing As String
     Property Sanity As Integer
     ReadOnly Property MaximumSanity As Integer
+    ReadOnly Property HasItems As Boolean
     Sub SetTriggerLevel(trauma As String, triggerLevel As Integer)
     Sub SetAwarenessLevel(trauma As String, awarenessLevel As Integer)
     Sub SetEscalation(trauma As String, escalation As Integer)

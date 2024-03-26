@@ -4,6 +4,7 @@
     Private Const GoBackItem As String = "GoBack"
     Private Const FaceMemoryItem As String = "FaceMemory"
     Private Const GroundItem As String = "Ground"
+    Private Const InventoryItem As String = "Inventory"
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IWorldModel))
         MyBase.New(parent, setState, context, "Action Menu", "", GameState.Navigation)
@@ -29,6 +30,9 @@
         End If
         If Context.Model.HasGroundItems Then
             result.Add(("Ground...", GroundItem))
+        End If
+        If Context.Model.HasInventory Then
+            result.Add(("Inventory...", InventoryItem))
         End If
         Return result
     End Function

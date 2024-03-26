@@ -107,7 +107,7 @@
         World = New World(JsonSerializer.Deserialize(Of WorldData)(File.ReadAllText(filename)))
     End Sub
     Public Sub Save(filename As String) Implements IWorldModel.Save
-        File.WriteAllText(filename, JsonSerializer.Serialize(World.Serialized))
+        File.WriteAllText(filename, World.Serialized)
     End Sub
 
     Public Sub TurnLeft() Implements IWorldModel.TurnLeft
@@ -207,6 +207,12 @@
     Public ReadOnly Property GroundItems As IReadOnlyDictionary(Of String, Integer) Implements IWorldModel.GroundItems
         Get
             Return World.Avatar.Location.Items.GroupBy(Function(x) x.ItemType).ToDictionary(Function(x) x.Key, Function(x) x.Count)
+        End Get
+    End Property
+
+    Public ReadOnly Property HasInventory As Boolean Implements IWorldModel.HasInventory
+        Get
+            Return World.Avatar.HasItems
         End Get
     End Property
 

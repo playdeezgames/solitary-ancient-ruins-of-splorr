@@ -49,6 +49,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasItems As Boolean Implements ICharacter.HasItems
+        Get
+            Return CharacterData.Items.Any
+        End Get
+    End Property
+
     Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
         CharacterData.TriggerLevels(trauma) = triggerLevel
     End Sub
