@@ -198,6 +198,18 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasGroundItems As Boolean Implements IWorldModel.HasGroundItems
+        Get
+            Return World.Avatar.Location.HasItems
+        End Get
+    End Property
+
+    Public ReadOnly Property GroundItems As IReadOnlyDictionary(Of String, Integer) Implements IWorldModel.GroundItems
+        Get
+            Return World.Avatar.Location.Items.GroupBy(Function(x) x.ItemType).ToDictionary(Function(x) x.Key, Function(x) x.Count)
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
@@ -216,4 +228,15 @@
     Public Function IsBoardCellVisible(column As Integer, row As Integer) As Boolean Implements IWorldModel.IsBoardCellVisible
         Return board(column, row).Visible
     End Function
+
+    Public Function GetItemTypeName(itemType As String) As String Implements IWorldModel.GetItemTypeName
+        Return ItemTypes.GetDescriptor(itemType).DisplayName
+    End Function
+
+    Public Sub PickUpItems(itemType As String) Implements IWorldModel.PickUpItems
+        For Each item In World.Avatar.Location.Items.Where(Function(x) x.ItemType = itemType)
+            World.Avatar.AddItem(item)
+            World.Avatar.Location.RemoveItem(item)
+        Next
+    End Sub
 End Class

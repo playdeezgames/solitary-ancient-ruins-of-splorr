@@ -3,7 +3,7 @@
     Private ReadOnly descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
-            {SanityPotion, New ItemTypeDescriptor()}
+            {SanityPotion, New ItemTypeDescriptor("Red Pill", spawnCount:=10)}
         }
     Friend ReadOnly Property All As IEnumerable(Of String)
         Get

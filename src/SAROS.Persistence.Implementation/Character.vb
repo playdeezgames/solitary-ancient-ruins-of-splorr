@@ -61,6 +61,10 @@
         CharacterData.Escalations(trauma) = escalation
     End Sub
 
+    Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
+        CharacterData.Items.Add(item.Id)
+    End Sub
+
     Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel
         Return CharacterData.TriggerLevels(trauma)
     End Function

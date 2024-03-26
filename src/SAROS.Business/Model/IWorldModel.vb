@@ -26,4 +26,8 @@
     ReadOnly Property PreviousCombat As String
     ReadOnly Property TriggerLevel As Integer
     ReadOnly Property Escalation As Integer
+    ReadOnly Property HasGroundItems As Boolean
+    ReadOnly Property GroundItems As IReadOnlyDictionary(Of String, Integer)
+    Function GetItemTypeName(itemType As String) As String
+    Sub PickUpItems(itemType As String)
 End Interface

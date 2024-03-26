@@ -3,6 +3,7 @@
 
     Private Const GoBackItem As String = "GoBack"
     Private Const FaceMemoryItem As String = "FaceMemory"
+    Private Const GroundItem As String = "Ground"
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IWorldModel))
         MyBase.New(parent, setState, context, "Action Menu", "", GameState.Navigation)
@@ -14,6 +15,8 @@
                 SetState(GameState.Navigation)
             Case FaceMemoryItem
                 SetState(BoilerplateState.Neutral)
+            Case GroundItem
+                SetState(GameState.Ground)
         End Select
     End Sub
 
@@ -23,6 +26,9 @@
         }
         If Context.Model.TriggerLevel > 0 Then
             result.Add(("Face memory...", FaceMemoryItem))
+        End If
+        If Context.Model.HasGroundItems Then
+            result.Add(("Ground...", GroundItem))
         End If
         Return result
     End Function

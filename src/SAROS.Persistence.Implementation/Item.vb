@@ -12,4 +12,10 @@ Friend Class Item
             Return ItemId
         End Get
     End Property
+
+    Public ReadOnly Property ItemType As String Implements IItem.ItemType
+        Get
+            Return ItemData.ItemType
+        End Get
+    End Property
 End Class

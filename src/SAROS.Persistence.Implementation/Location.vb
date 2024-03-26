@@ -45,6 +45,18 @@
         End Set
     End Property
 
+    Public ReadOnly Property HasItems As Boolean Implements ILocation.HasItems
+        Get
+            Return LocationData.Items.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements ILocation.Items
+        Get
+            Return LocationData.Items.Select(Function(x) New Item(WorldData, x))
+        End Get
+    End Property
+
     Public Sub SetNeighbor(direction As String, nextLocation As ILocation) Implements ILocation.SetNeighbor
         LocationData.Neighbors(direction) = nextLocation.Id
     End Sub
@@ -63,6 +75,10 @@
 
     Public Sub AddItem(item As IItem) Implements ILocation.AddItem
         LocationData.Items.Add(item.Id)
+    End Sub
+
+    Public Sub RemoveItem(item As IItem) Implements ILocation.RemoveItem
+        LocationData.Items.Remove(item.Id)
     End Sub
 
     Public Function HasDoor(direction As String) As Boolean Implements ILocation.HasDoor

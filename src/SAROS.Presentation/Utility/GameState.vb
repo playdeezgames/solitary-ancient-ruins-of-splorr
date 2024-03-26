@@ -4,4 +4,5 @@
     Friend Const Combat = "Combat"
     Friend Const CombatResult = "CombatResult"
     Friend Const ActionMenu = "ActionMenu"
+    Friend Const Ground = "Ground"
 End Module
