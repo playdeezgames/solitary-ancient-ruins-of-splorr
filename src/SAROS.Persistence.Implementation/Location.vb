@@ -61,6 +61,10 @@
         LocationData.Characters.Remove(character.Id)
     End Sub
 
+    Public Sub AddItem(item As IItem) Implements ILocation.AddItem
+        LocationData.Items.Add(item.Id)
+    End Sub
+
     Public Function HasDoor(direction As String) As Boolean Implements ILocation.HasDoor
         Return LocationData.Doors.ContainsKey(direction)
     End Function

@@ -1,6 +1,6 @@
 ﻿Imports SAROS.Data
 
-Public Class LocationDataClient
+Public MustInherit Class LocationDataClient
     Inherits WorldDataClient
     Protected ReadOnly Property LocationId As Integer
     Protected ReadOnly Property LocationData As LocationData

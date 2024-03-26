@@ -7,6 +7,38 @@
             Function(x) x,
             Function(x) Direction.ToMazeDirection(x))
     Friend Sub Initialize(world As IWorld)
+        InitializeLocations(world)
+        InitializeCharacter(world)
+        InitializeItems(world)
+    End Sub
+
+    Private Sub InitializeItems(world As IWorld)
+        For Each itemType In ItemTypes.All
+            Dim descriptor = ItemTypes.GetDescriptor(itemType)
+            For Each dummy In Enumerable.Range(0, descriptor.SpawnCount)
+                Dim location = RNG.FromEnumerable(world.Locations)
+                Dim item = world.CreateItem(itemType)
+                location.AddItem(item)
+            Next
+        Next
+    End Sub
+
+    Private Sub InitializeCharacter(world As IWorld)
+        Dim character = world.CreateCharacter(
+                        RNG.FromEnumerable(world.Locations),
+                        RNG.FromEnumerable(Direction.All),
+                        MaximumSanity)
+        world.SetAvatar(
+            character)
+        For Each trauma In Traumas.All
+            character.SetTriggerLevel(trauma, RNG.RollDice("4d6"))
+            character.SetAwarenessLevel(trauma, 0)
+            character.SetEscalation(trauma, 0)
+        Next
+        character.Location.Trauma = Nothing
+    End Sub
+
+    Private Sub InitializeLocations(world As IWorld)
         Dim maze As New Maze(Of String)(MazeColumns, MazeRows, directions)
         maze.Generate()
         For Each column In Enumerable.Range(0, MazeColumns)
@@ -26,18 +58,9 @@
                 End If
             Next
         Next
-        Dim character = world.CreateCharacter(
-                RNG.FromEnumerable(world.Locations),
-                RNG.FromEnumerable(Direction.All),
-                MaximumSanity)
-        world.SetAvatar(
-            character)
         For Each trauma In Traumas.All
             Dim location = RNG.FromEnumerable(world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma))
             location.Trauma = trauma
-            character.SetTriggerLevel(trauma, RNG.RollDice("4d6"))
-            character.SetAwarenessLevel(trauma, 0)
-            character.SetEscalation(trauma, 0)
         Next
         For Each location In world.Locations.Where(Function(x) Not x.HasCharacter AndAlso Not x.HasTrauma)
             location.Trauma = RNG.FromEnumerable(Traumas.All)

@@ -1,6 +1,6 @@
 ﻿Imports SAROS.Data
 
-Friend Class CharacterDataClient
+Friend MustInherit Class CharacterDataClient
     Inherits WorldDataClient
     Protected CharacterId As Integer
     Protected ReadOnly Property CharacterData As CharacterData

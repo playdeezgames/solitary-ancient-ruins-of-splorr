@@ -53,4 +53,10 @@ Public Class World
         location.AddCharacter(result)
         Return result
     End Function
+
+    Public Function CreateItem(itemType As String) As IItem Implements IWorld.CreateItem
+        Dim itemId = WorldData.Items.Count
+        WorldData.Items.Add(New ItemData With {.itemType = itemType})
+        Return New Item(WorldData, itemId)
+    End Function
 End Class
