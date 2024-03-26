@@ -10,6 +10,9 @@
         Select Case value.Item2
             Case GoBackItem
                 SetState(GameState.ActionMenu)
+            Case Else
+                Context.Model.UseItem(value.Item2)
+                SetState(GameState.Navigation)
         End Select
     End Sub
 

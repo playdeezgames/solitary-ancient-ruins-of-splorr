@@ -77,6 +77,10 @@
         CharacterData.Items.Add(item.Id)
     End Sub
 
+    Public Sub RemoveItem(item As IItem) Implements ICharacter.RemoveItem
+        CharacterData.Items.Remove(item.Id)
+    End Sub
+
     Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel
         Return CharacterData.TriggerLevels(trauma)
     End Function

@@ -251,4 +251,13 @@
             World.Avatar.Location.RemoveItem(item)
         Next
     End Sub
+
+    Public Sub UseItem(itemType As String) Implements IWorldModel.UseItem
+        Dim item = World.Avatar.Items.First(Function(x) x.ItemType = itemType)
+        Dim descriptor = ItemTypes.GetDescriptor(itemType)
+        If descriptor.IsConsumed Then
+            World.Avatar.RemoveItem(item)
+        End If
+        descriptor.Use(World.Avatar)
+    End Sub
 End Class

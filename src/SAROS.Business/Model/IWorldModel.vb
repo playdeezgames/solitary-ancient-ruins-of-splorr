@@ -30,6 +30,7 @@
     ReadOnly Property GroundItems As IReadOnlyDictionary(Of String, Integer)
     Function GetItemTypeName(itemType As String) As String
     Sub PickUpItems(itemType As String)
+    Sub UseItem(itemType As String)
     ReadOnly Property HasInventory As Boolean
     ReadOnly Property Inventory As IReadOnlyDictionary(Of String, Integer)
 End Interface

@@ -12,5 +12,6 @@
     Function GetTriggerLevel(trauma As String) As Integer
     Function GetAwarenessLevel(trauma As String) As Integer
     Function GetEscalation(trauma As String) As Integer
+    Sub RemoveItem(item As IItem)
     ReadOnly Property Items As IEnumerable(Of IItem)
 End Interface
