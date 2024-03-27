@@ -233,7 +233,7 @@
             Dim cells = World.Locations.Select(
                 Function(location)
                     If Not World.Avatar.KnowsLocation(location) Then
-                        Return (location.Column, location.Row, $"{ChrW(17)}")
+                        Return (location.Column, location.Row, $"{ChrW(20)}")
                     End If
                     Dim flags = 0
                     If location.HasDoor(Direction.North) Then
@@ -250,9 +250,18 @@
                     End If
                     Return (location.Column, location.Row, $"{ChrW(flags)}")
                 End Function).ToList
-            cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(16)))
+            Select Case World.Avatar.Facing
+                Case Direction.North
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(16)))
+                Case Direction.East
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(17)))
+                Case Direction.South
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(18)))
+                Case Direction.West
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(19)))
+            End Select
             Return cells
-    End Get
+        End Get
     End Property
 
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat

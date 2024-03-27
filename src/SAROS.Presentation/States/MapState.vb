@@ -15,9 +15,11 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill(0)
         Dim mapFont = Context.Font(MapFontName)
+        Const OffsetX = 192 - 7 * 25 \ 2
+        Const OffsetY = 96 - 7 * 25 \ 2
         For Each cell In Context.Model.Map
-            Dim x = cell.Column * mapFont.TextWidth(ChrW(0))
-            Dim y = cell.Row * mapFont.Height
+            Dim x = cell.Column * mapFont.TextWidth(ChrW(0)) + OffsetX
+            Dim y = cell.Row * mapFont.Height + OffsetY
             mapFont.WriteText(displayBuffer, (x, y), cell.Text, 15)
         Next
     End Sub

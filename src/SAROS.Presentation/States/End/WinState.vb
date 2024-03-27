@@ -17,4 +17,9 @@
         uifont.WriteText(displayBuffer, (0, 0), "You win!", 15)
         uifont.WriteText(displayBuffer, (0, 8), "You are the epitome of mental health!", 15)
     End Sub
+
+    Public Overrides Sub OnStart()
+        PlayMux("VictoryTheme")
+        MyBase.OnStart()
+    End Sub
 End Class

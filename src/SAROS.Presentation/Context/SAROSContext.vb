@@ -70,9 +70,11 @@ Public Class SAROSContext
             {0, ("About Solitary Ancient Ruins of SPLORR!!", 11)},
             {2, ("Art:", 15)},
             {3, ("https://vurmux.itch.io/urizen-onebit-tileset", 15)},
-            {5, ("A Production of TheGrumpyGameDev", 15)},
-            {7, ("For Dungeon Crawler Jam 2024", 15)},
-            {9, ("See 'aboot.txt'", 15)}
+            {5, ("Victory Theme:", 15)},
+            {6, ("https://zooperdan.itch.io/", 15)},
+            {8, ("A Production of TheGrumpyGameDev", 15)},
+            {10, ("For Dungeon Crawler Jam 2024", 15)},
+            {12, ("See 'aboot.txt'", 15)}
         }
 
     Public Overrides Sub ShowAboutContent(displayBuffer As IPixelSink, font As Font)

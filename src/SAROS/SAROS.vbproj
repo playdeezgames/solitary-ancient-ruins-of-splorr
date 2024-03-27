@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <None Remove="aboot.txt" />
+    <None Remove="Content\Audio\Mux\we_will_prevail.ogg" />
     <None Remove="Content\BagelQuest.json" />
     <None Remove="Content\CombatTheme.ogg" />
     <None Remove="Content\Craft.wav" />
@@ -52,6 +53,9 @@
 
   <ItemGroup>
     <Content Include="aboot.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Audio\Mux\we_will_prevail.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\font.json">
