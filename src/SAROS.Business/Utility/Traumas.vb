@@ -6,6 +6,7 @@
     Friend Const BestFriend = "BestFriend"
     Friend Const FirstCrush = "FirstCrush"
     Friend Const BodyImage = "BodyImage"
+    Friend Const BeingInPublic = "BeingInPublic"
     Friend ReadOnly All As IReadOnlyList(Of String) =
         New List(Of String) From
         {
@@ -15,6 +16,7 @@
             School,
             BestFriend,
             FirstCrush,
-            BodyImage
+            BodyImage,
+            BeingInPublic
         }
 End Module

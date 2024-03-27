@@ -6,4 +6,5 @@
     Friend Const ActionMenu = "ActionMenu"
     Friend Const Ground = "Ground"
     Friend Const Inventory = "Inventory"
+    Friend Const Win = "Win"
 End Module

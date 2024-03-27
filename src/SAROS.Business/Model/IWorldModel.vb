@@ -33,4 +33,5 @@
     Sub UseItem(itemType As String)
     ReadOnly Property HasInventory As Boolean
     ReadOnly Property Inventory As IReadOnlyDictionary(Of String, Integer)
+    ReadOnly Property Win As Boolean
 End Interface

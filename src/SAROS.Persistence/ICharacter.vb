@@ -14,4 +14,5 @@
     Function GetEscalation(trauma As String) As Integer
     Sub RemoveItem(item As IItem)
     ReadOnly Property Items As IEnumerable(Of IItem)
+    ReadOnly Property Win As Boolean
 End Interface

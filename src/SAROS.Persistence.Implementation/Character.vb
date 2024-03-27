@@ -61,6 +61,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Win As Boolean Implements ICharacter.Win
+        Get
+            Return CharacterData.TriggerLevels.All(Function(x) x.Value <= 0)
+        End Get
+    End Property
+
     Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
         CharacterData.TriggerLevels(trauma) = triggerLevel
     End Sub

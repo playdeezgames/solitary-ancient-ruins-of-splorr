@@ -222,6 +222,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Win As Boolean Implements IWorldModel.Win
+        Get
+            Return World.Avatar.Win
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
