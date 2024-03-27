@@ -1,1 +1,5 @@
-{"UIFont":"Content/Fonts/CyFont5x7.json", "Room":"Content/Fonts/Room.json"}
+{
+  "UIFont": "Content/Fonts/CyFont5x7.json",
+  "Room": "Content/Fonts/Room.json",
+  "Map": "Content/Fonts/Map.json"
+}

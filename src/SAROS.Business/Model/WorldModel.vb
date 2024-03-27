@@ -228,6 +228,30 @@
         End Get
     End Property
 
+    Public ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String)) Implements IWorldModel.Map
+        Get
+            Dim cells = World.Locations.Select(
+                Function(location)
+                    Dim flags = 0
+                    If location.HasDoor(Direction.North) Then
+                        flags += 1
+                    End If
+                    If location.HasDoor(Direction.East) Then
+                        flags += 2
+                    End If
+                    If location.HasDoor(Direction.South) Then
+                        flags += 4
+                    End If
+                    If location.HasDoor(Direction.West) Then
+                        flags += 8
+                    End If
+                    Return (location.Column, location.Row, $"{ChrW(flags)}")
+                End Function).ToList
+            cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(16)))
+            Return cells
+    End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
