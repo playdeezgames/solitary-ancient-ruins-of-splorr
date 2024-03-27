@@ -47,7 +47,8 @@ Public Class World
                                     .LocationId = location.Id,
                                     .Facing = facing,
                                     .MaximumSanity = maximumSanity,
-                                    .Sanity = maximumSanity
+                                    .Sanity = maximumSanity,
+                                    .KnownLocations = New HashSet(Of Integer) From {location.Id}
                                 })
         Dim result = New Character(WorldData, characterId)
         location.AddCharacter(result)

@@ -232,6 +232,9 @@
         Get
             Dim cells = World.Locations.Select(
                 Function(location)
+                    If Not World.Avatar.KnowsLocation(location) Then
+                        Return (location.Column, location.Row, $"{ChrW(17)}")
+                    End If
                     Dim flags = 0
                     If location.HasDoor(Direction.North) Then
                         flags += 1

@@ -20,6 +20,7 @@
             If value.Id <> CharacterData.LocationId Then
                 Location.RemoveCharacter(Me)
                 CharacterData.LocationId = value.Id
+                CharacterData.KnownLocations.Add(value.Id)
                 Location.AddCharacter(Me)
             End If
         End Set
@@ -97,5 +98,9 @@
 
     Public Function GetEscalation(trauma As String) As Integer Implements ICharacter.GetEscalation
         Return CharacterData.Escalations(trauma)
+    End Function
+
+    Public Function KnowsLocation(location As ILocation) As Boolean Implements ICharacter.KnowsLocation
+        Return CharacterData.KnownLocations.Contains(location.Id)
     End Function
 End Class
