@@ -1,12 +1,12 @@
-﻿Friend Module Traumas
-    Friend Const Mother = "Mother"
-    Friend Const Father = "Father"
-    Friend Const Teacher = "Teacher"
-    Friend Const School = "School"
-    Friend Const BestFriend = "BestFriend"
-    Friend Const FirstCrush = "FirstCrush"
-    Friend Const BodyImage = "BodyImage"
-    Friend Const BeingInPublic = "BeingInPublic"
+﻿Public Module Traumas
+    Public Const Mother = "Mother"
+    Public Const Father = "Father"
+    Public Const Teacher = "Teacher"
+    Public Const School = "School"
+    Public Const BestFriend = "BestFriend"
+    Public Const FirstCrush = "FirstCrush"
+    Public Const BodyImage = "BodyImage"
+    Public Const BeingInPublic = "BeingInPublic"
     Friend ReadOnly All As IReadOnlyList(Of String) =
         New List(Of String) From
         {
