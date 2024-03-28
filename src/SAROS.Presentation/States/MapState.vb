@@ -1,4 +1,6 @@
-﻿Friend Class MapState
+﻿Imports System.Data
+
+Friend Class MapState
     Inherits BaseGameState(Of IWorldModel)
 
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext(Of IWorldModel))
@@ -22,5 +24,8 @@
             Dim y = cell.Row * mapFont.Height + OffsetY
             mapFont.WriteText(displayBuffer, (x, y), cell.Text, 15)
         Next
+        Dim uifont = Context.Font(UIFontName)
+        Context.ShowHeader(displayBuffer, uifont, "MAP", 6, 0)
+        Context.ShowStatusBar(displayBuffer, uifont, Context.ControlsText(Nothing, "Close"), 0, 7)
     End Sub
 End Class

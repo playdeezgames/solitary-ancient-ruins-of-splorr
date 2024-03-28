@@ -54,6 +54,7 @@ Friend Class CombatState
 
     Public Overrides Sub OnStart()
         Context.Model.BeginCombat(Context.Model.Trauma)
+        PlayMux("CombatTheme")
         MyBase.OnStart()
     End Sub
 End Class

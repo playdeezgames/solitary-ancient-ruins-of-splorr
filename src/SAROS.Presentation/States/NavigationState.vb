@@ -57,4 +57,13 @@ Friend Class NavigationState
         Dim roomFont = Context.Font(RoomFontName)
         roomFont.WriteText(displayBuffer, (0, 8), Context.Model.RoomString, If(Context.Model.TriggerLevel > 0, 4, 8))
     End Sub
+
+    Public Overrides Sub OnStart()
+        If Context.Model.TriggerLevel > 0 Then
+            PlayMux("CombatTheme")
+        Else
+            PlayMux("MainTheme")
+        End If
+        MyBase.OnStart()
+    End Sub
 End Class
