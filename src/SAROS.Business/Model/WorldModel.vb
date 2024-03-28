@@ -175,13 +175,13 @@
         BoardColumn = RNG.FromRange(0, BoardColumns - 1)
     End Sub
 
-    Private ReadOnly Property EnemyCombatDamage As Integer
+    Public ReadOnly Property EnemyCombatDamage As Integer Implements IWorldModel.EnemyCombatDamage
         Get
             Return Enumerable.Range(0, BoardRows).Where(Function(r) board(BoardColumn, r).Trigger).Count
         End Get
     End Property
 
-    Private ReadOnly Property PlayerCombatDamage As Integer
+    Public ReadOnly Property PlayerCombatDamage As Integer Implements IWorldModel.PlayerCombatDamage
         Get
             Return Enumerable.Range(0, BoardColumns).Where(Function(c) board(c, BoardRow).Trigger).Count
         End Get
