@@ -1,5 +1,6 @@
 {
   "UIFont": "Content/Fonts/CyFont5x7.json",
   "Room": "Content/Fonts/Room.json",
-  "Map": "Content/Fonts/Map.json"
+  "Map": "Content/Fonts/Map.json",
+  "Item": "Content/Fonts/Item.json"
 }
