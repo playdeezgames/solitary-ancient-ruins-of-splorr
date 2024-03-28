@@ -69,11 +69,11 @@
     End Property
 
     Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
-        CharacterData.TriggerLevels(trauma) = triggerLevel
+        CharacterData.TriggerLevels(trauma) = Math.Clamp(triggerLevel, 0, 24)
     End Sub
 
     Public Sub SetAwarenessLevel(trauma As String, awarenessLevel As Integer) Implements ICharacter.SetAwarenessLevel
-        CharacterData.AwarenessLevels(trauma) = awarenessLevel
+        CharacterData.AwarenessLevels(trauma) = Math.Clamp(awarenessLevel, 0, 25)
     End Sub
 
     Public Sub SetEscalation(trauma As String, escalation As Integer) Implements ICharacter.SetEscalation
@@ -89,6 +89,9 @@
     End Sub
 
     Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel
+        If String.IsNullOrEmpty(trauma) Then
+            Return 0
+        End If
         Return CharacterData.TriggerLevels(trauma)
     End Function
 

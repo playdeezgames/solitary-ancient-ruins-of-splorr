@@ -228,12 +228,12 @@
         End Get
     End Property
 
-    Public ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String)) Implements IWorldModel.Map
+    Public ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String, TriggerLevel As Integer)) Implements IWorldModel.Map
         Get
             Dim cells = World.Locations.Select(
                 Function(location)
                     If Not World.Avatar.KnowsLocation(location) Then
-                        Return (location.Column, location.Row, $"{ChrW(20)}")
+                        Return (location.Column, location.Row, $"{ChrW(20)}", 0)
                     End If
                     Dim flags = 0
                     If location.HasDoor(Direction.North) Then
@@ -248,17 +248,17 @@
                     If location.HasDoor(Direction.West) Then
                         flags += 8
                     End If
-                    Return (location.Column, location.Row, $"{ChrW(flags)}")
+                    Return (location.Column, location.Row, $"{ChrW(flags)}", World.Avatar.GetTriggerLevel(location.Trauma))
                 End Function).ToList
             Select Case World.Avatar.Facing
                 Case Direction.North
-                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(16)))
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(16), 0))
                 Case Direction.East
-                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(17)))
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(17), 0))
                 Case Direction.South
-                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(18)))
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(18), 0))
                 Case Direction.West
-                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(19)))
+                    cells.Add((World.Avatar.Location.Column, World.Avatar.Location.Row, ChrW(19), 0))
             End Select
             Return cells
         End Get

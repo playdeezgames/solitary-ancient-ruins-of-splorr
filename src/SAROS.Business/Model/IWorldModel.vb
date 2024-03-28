@@ -35,7 +35,7 @@
     ReadOnly Property HasInventory As Boolean
     ReadOnly Property Inventory As IReadOnlyDictionary(Of String, Integer)
     ReadOnly Property Win As Boolean
-    ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String))
+    ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String, TriggerLevel As Integer))
     ReadOnly Property EnemyCombatDamage As Integer
     ReadOnly Property PlayerCombatDamage As Integer
 End Interface

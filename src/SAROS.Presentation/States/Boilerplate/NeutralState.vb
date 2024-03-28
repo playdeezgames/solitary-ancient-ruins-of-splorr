@@ -17,8 +17,8 @@
         New List(Of (String, Func(Of IWorldModel, Boolean))) From
         {
             (GameState.Win, Function(m) m.Win),
-            (GameState.Combat, Function(m) m.TriggerLevel > 0),
             (GameState.Lose, Function(m) m.IsInsane),
+            (GameState.Combat, Function(m) m.TriggerLevel > 0),
             (GameState.Navigation, Function(m) True)
         }
 

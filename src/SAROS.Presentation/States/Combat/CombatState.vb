@@ -15,6 +15,11 @@ Friend Class CombatState
                 Context.Model.NextBoardRow()
             Case Command.A
                 Context.Model.EnemyMove()
+                If Context.Model.IsBoardCellTrigger(Context.Model.BoardColumn, Context.Model.BoardRow) Then
+                    PlaySfx(Sfx.PlayerHit)
+                Else
+                    PlaySfx(Sfx.WooHoo)
+                End If
                 SetState(GameState.CombatResult)
         End Select
     End Sub
