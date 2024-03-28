@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Net.Mime
 
 Friend Class NavigationState
     Inherits BaseGameState(Of IWorldModel)
@@ -25,17 +26,35 @@ Friend Class NavigationState
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill(0)
-        Dim roomFont = Context.Font(roomFontname)
-        roomFont.WriteText(displayBuffer, (0, 0), Context.Model.RoomString, 15)
+        DrawRoomFrame(displayBuffer)
+        DrawItems(displayBuffer)
 
         Dim uifont = Context.Font(UIFontName)
-
-        If Context.Model.HasGroundItems Then
-            uifont.WriteText(displayBuffer, (0, 176), "Items", 7)
+        Dim text = Context.Model.Facing.ToUpper
+        uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 0), text, 9)
+        text = $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}"
+        Dim hue = 2
+        If Context.Model.Sanity <= 33 Then
+            hue = 4
+        ElseIf Context.Model.Sanity <= 66 Then
+            hue = 14
         End If
+        uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 200), text, hue)
 
-        uifont.WriteText(displayBuffer, (0, 192), $"({Context.Model.Column},{Context.Model.Row}) {Context.Model.Facing}", 7)
-        uifont.WriteText(displayBuffer, (0, 200), $"{Context.Model.Trauma} {Context.Model.TriggerLevel} {Context.Model.Escalation}", 7)
-        uifont.WriteText(displayBuffer, (0, 208), $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}", 7)
+        Context.ShowStatusBar(displayBuffer, uifont, Context.ControlsText("Action Menu", "Game Menu"), 0, 7)
+    End Sub
+
+    Private Sub DrawItems(displayBuffer As IPixelSink)
+        Dim itemFont = Context.Font(ItemFontName)
+        If Context.Model.HasGroundItems Then
+            For Each itemGlyph In Context.Model.ItemGlyphs
+                itemFont.WriteText(displayBuffer, itemGlyph.Position, itemGlyph.Text, itemGlyph.Hue)
+            Next
+        End If
+    End Sub
+
+    Private Sub DrawRoomFrame(displayBuffer As IPixelSink)
+        Dim roomFont = Context.Font(RoomFontName)
+        roomFont.WriteText(displayBuffer, (0, 8), Context.Model.RoomString, If(Context.Model.TriggerLevel > 0, 4, 8))
     End Sub
 End Class

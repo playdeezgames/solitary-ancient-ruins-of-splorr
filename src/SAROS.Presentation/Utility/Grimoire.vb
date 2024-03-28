@@ -11,4 +11,5 @@
     Friend Const UIFontName = "UIFont"
     Friend Const RoomFontName = "Room"
     Friend Const MapFontName = "Map"
+    Friend Const ItemFontName = "Item"
 End Module

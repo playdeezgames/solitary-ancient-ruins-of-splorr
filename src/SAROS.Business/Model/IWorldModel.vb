@@ -28,6 +28,7 @@
     ReadOnly Property Escalation As Integer
     ReadOnly Property HasGroundItems As Boolean
     ReadOnly Property GroundItems As IReadOnlyDictionary(Of String, Integer)
+    ReadOnly Property ItemGlyphs As IEnumerable(Of (Position As (X As Integer, Y As Integer), Text As String, Hue As Integer))
     Function GetItemTypeName(itemType As String) As String
     Sub PickUpItems(itemType As String)
     Sub UseItem(itemType As String)

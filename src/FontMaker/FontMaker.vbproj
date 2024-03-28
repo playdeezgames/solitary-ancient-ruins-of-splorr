@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="itemsource.png" />
     <None Remove="mapsource.png" />
     <None Remove="source.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="itemsource.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="mapsource.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

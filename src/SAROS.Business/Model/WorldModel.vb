@@ -264,6 +264,15 @@
         End Get
     End Property
 
+    Public ReadOnly Property ItemGlyphs As IEnumerable(Of (Position As (X As Integer, Y As Integer), Text As String, Hue As Integer)) Implements IWorldModel.ItemGlyphs
+        Get
+            Return GroundItems.Keys.Select(Function(x)
+                                               Dim descriptor = ItemTypes.GetDescriptor(x)
+                                               Return (descriptor.Position, descriptor.Text, descriptor.Hue)
+                                           End Function)
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
