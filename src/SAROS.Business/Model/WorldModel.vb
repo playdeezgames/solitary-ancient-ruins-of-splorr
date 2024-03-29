@@ -291,6 +291,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property CanAvoid As Boolean Implements IWorldModel.CanAvoid
+        Get
+            Return World.Avatar.Items.Any(Function(x) x.ItemType = ItemTypes.Avoidance)
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
@@ -328,5 +334,10 @@
             World.Avatar.RemoveItem(item)
         End If
         descriptor.Use(World.Avatar)
+    End Sub
+
+    Public Sub Avoid() Implements IWorldModel.Avoid
+        Dim item = World.Avatar.Items.First(Function(x) x.ItemType = ItemTypes.Avoidance)
+        World.Avatar.RemoveItem(item)
     End Sub
 End Class

@@ -41,4 +41,6 @@
     ReadOnly Property PostCombatSanity As Integer
     ReadOnly Property PostCombatTriggerLevel As Integer
     ReadOnly Property SectionName As String
+    ReadOnly Property CanAvoid As Boolean
+    Sub Avoid()
 End Interface

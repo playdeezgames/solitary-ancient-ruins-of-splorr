@@ -21,6 +21,11 @@ Friend Class CombatState
                     PlaySfx(Sfx.WooHoo)
                 End If
                 SetState(GameState.CombatResult)
+            Case Command.B
+                If Context.Model.CanAvoid Then
+                    Context.Model.Avoid()
+                    SetState(GameState.Navigation)
+                End If
         End Select
     End Sub
 
@@ -50,11 +55,16 @@ Friend Class CombatState
 
         uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 0), text, 15)
 
-        Context.ShowStatusBar(displayBuffer, uifont, "Up/Down: Select Row | A/Space: Choose!", 0, 7)
+        If Context.Model.CanAvoid Then
+            text = "You can avoid dealing with this... for now."
+            uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 160), text, 14)
+        End If
 
-        'uifont.WriteText(displayBuffer, (0, 192), $"({Context.Model.Column},{Context.Model.Row}) {Context.Model.Facing}", 7)
-        'uifont.WriteText(displayBuffer, (0, 200), $"{Context.Model.Trauma} {Context.Model.TriggerLevel} {Context.Model.Escalation}", 7)
-        'uifont.WriteText(displayBuffer, (0, 208), $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}", 7)
+        If Context.Model.CanAvoid Then
+            Context.ShowStatusBar(displayBuffer, uifont, "Up/Down: Select Row | A/Space: Deal! | B/Esc: Avoid!", 0, 7)
+        Else
+            Context.ShowStatusBar(displayBuffer, uifont, "Up/Down: Select Row | A/Space: Deal!", 0, 7)
+        End If
     End Sub
 
     Public Overrides Sub OnStart()
