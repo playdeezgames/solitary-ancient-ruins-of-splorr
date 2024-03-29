@@ -20,7 +20,7 @@
             If value.Id <> CharacterData.LocationId Then
                 Location.RemoveCharacter(Me)
                 CharacterData.LocationId = value.Id
-                CharacterData.KnownLocations.Add(value.Id)
+                AddKnownLocation(value)
                 Location.AddCharacter(Me)
             End If
         End Set
@@ -68,6 +68,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property World As IWorld Implements ICharacter.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
+
     Public Sub SetTriggerLevel(trauma As String, triggerLevel As Integer) Implements ICharacter.SetTriggerLevel
         CharacterData.TriggerLevels(trauma) = Math.Clamp(triggerLevel, 0, 24)
     End Sub
@@ -86,6 +92,10 @@
 
     Public Sub RemoveItem(item As IItem) Implements ICharacter.RemoveItem
         CharacterData.Items.Remove(item.Id)
+    End Sub
+
+    Public Sub AddKnownLocation(location As ILocation) Implements ICharacter.AddKnownLocation
+        CharacterData.KnownLocations.Add(location.Id)
     End Sub
 
     Public Function GetTriggerLevel(trauma As String) As Integer Implements ICharacter.GetTriggerLevel

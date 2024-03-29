@@ -22,7 +22,19 @@ Friend Class MapState
         For Each cell In Context.Model.Map
             Dim x = cell.Column * mapFont.TextWidth(ChrW(0)) + OffsetX
             Dim y = cell.Row * mapFont.Height + OffsetY
-            mapFont.WriteText(displayBuffer, (x, y), cell.Text, If(cell.TriggerLevel > 0, 4, 15))
+            Dim hue = 15
+            If cell.TriggerLevel > 0 Then
+                If cell.HasItems Then
+                    hue = 14
+                Else
+                    hue = 4
+                End If
+            Else
+                If cell.HasItems Then
+                    hue = 2
+                End If
+            End If
+            mapFont.WriteText(displayBuffer, (x, y), cell.Text, hue)
         Next
         Dim uifont = Context.Font(UIFontName)
         Context.ShowHeader(displayBuffer, uifont, "MAP", 6, 0)

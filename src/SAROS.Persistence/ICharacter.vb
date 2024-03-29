@@ -16,4 +16,6 @@
     ReadOnly Property Items As IEnumerable(Of IItem)
     ReadOnly Property Win As Boolean
     Function KnowsLocation(location As ILocation) As Boolean
+    Sub AddKnownLocation(location As ILocation)
+    ReadOnly Property World As IWorld
 End Interface
