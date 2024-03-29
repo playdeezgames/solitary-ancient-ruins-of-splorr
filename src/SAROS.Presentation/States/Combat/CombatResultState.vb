@@ -11,7 +11,13 @@ Friend Class CombatResultState
         Select Case cmd
             Case Command.A
                 Context.Model.CompleteCombat()
-                SetState(GameState.Navigation)
+                If Context.Model.IsInsane Then
+                    SetState(GameState.Lose)
+                ElseIf Context.Model.Win Then
+                    SetState(GameState.Win)
+                Else
+                    SetState(GameState.Navigation)
+                End If
         End Select
     End Sub
 
@@ -31,13 +37,13 @@ Friend Class CombatResultState
             displayBuffer.Fill((offsetX + cellWidth * Context.Model.BoardColumn, offsetY), (cellWidth, cellHeight * WorldModel.BoardRows), 12)
             CenterText(displayBuffer, 8, uifont, "You are triggered!", 4)
             CenterText(displayBuffer, 16, uifont, $"You lose {Context.Model.EnemyCombatDamage} sanity!", 4)
-            CenterText(displayBuffer, 24, uifont, $"You have {Math.Max(0, Context.Model.Sanity - Context.Model.EnemyCombatDamage)}/{Context.Model.MaximumSanity} sanity!", 4)
+            CenterText(displayBuffer, 24, uifont, $"You have {Context.Model.PostCombatSanity}/{Context.Model.MaximumSanity} sanity!", 4)
         Else
             displayBuffer.Fill((offsetX + cellWidth * Context.Model.BoardColumn, offsetY), (cellWidth, cellHeight * WorldModel.BoardRows), 12)
             displayBuffer.Fill((offsetX + 0, offsetY + cellHeight * Context.Model.BoardRow), (cellWidth * WorldModel.BoardColumns, cellHeight), 10)
             CenterText(displayBuffer, 8, uifont, "You process it in a healthy way!", 2)
             CenterText(displayBuffer, 16, uifont, $"Triggers decrease by {Context.Model.PlayerCombatDamage}!", 2)
-            CenterText(displayBuffer, 24, uifont, $"Trigger level now is {Math.Max(0, Context.Model.TriggerLevel - Context.Model.PlayerCombatDamage)}!", 2)
+            CenterText(displayBuffer, 24, uifont, $"Trigger level now is {Context.Model.PostCombatTriggerLevel}!", 2)
         End If
         For Each row In Enumerable.Range(0, WorldModel.BoardRows)
             Dim y = row * cellHeight + offsetY

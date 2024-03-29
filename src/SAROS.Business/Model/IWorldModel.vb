@@ -38,4 +38,7 @@
     ReadOnly Property Map As IEnumerable(Of (Column As Integer, Row As Integer, Text As String, TriggerLevel As Integer))
     ReadOnly Property EnemyCombatDamage As Integer
     ReadOnly Property PlayerCombatDamage As Integer
+    ReadOnly Property PostCombatSanity As Integer
+    ReadOnly Property PostCombatTriggerLevel As Integer
+    ReadOnly Property SectionName As String
 End Interface

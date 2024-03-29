@@ -30,7 +30,7 @@ Friend Class NavigationState
         DrawItems(displayBuffer)
 
         Dim uifont = Context.Font(UIFontName)
-        Dim text = Context.Model.Facing.ToUpper
+        Dim text = $"Section {Context.Model.SectionName} Facing {Context.Model.Facing.ToUpper}"
         uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 0), text, 9)
         text = $"Sanity: {Context.Model.Sanity}/{Context.Model.MaximumSanity}"
         Dim hue = 2

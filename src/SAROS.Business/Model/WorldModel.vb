@@ -273,6 +273,24 @@
         End Get
     End Property
 
+    Public ReadOnly Property PostCombatSanity As Integer Implements IWorldModel.PostCombatSanity
+        Get
+            Return Math.Max(0, Sanity - EnemyCombatDamage)
+        End Get
+    End Property
+
+    Public ReadOnly Property PostCombatTriggerLevel As Integer Implements IWorldModel.PostCombatTriggerLevel
+        Get
+            Return Math.Max(0, TriggerLevel - PlayerCombatDamage)
+        End Get
+    End Property
+
+    Public ReadOnly Property SectionName As String Implements IWorldModel.SectionName
+        Get
+            Return $"{"ABCDEFG"(World.Avatar.Location.Column)}{World.Avatar.Location.Row}"
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
