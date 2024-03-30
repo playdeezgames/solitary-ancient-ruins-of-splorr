@@ -21,6 +21,8 @@ Friend Class NavigationState
             Case Command.Up
                 Context.Model.MoveAhead()
                 SetState(BoilerplateState.Neutral)
+            Case Command.Down
+                Context.Model.TurnAround()
         End Select
     End Sub
 

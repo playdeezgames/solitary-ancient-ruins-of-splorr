@@ -287,7 +287,7 @@
 
     Public ReadOnly Property SectionName As String Implements IWorldModel.SectionName
         Get
-            Return $"{"ABCDEFG"(World.Avatar.Location.Column)}{World.Avatar.Location.Row}"
+            Return $"{"ABCDEFG"(World.Avatar.Location.Column)}{World.Avatar.Location.Row + 1}"
         End Get
     End Property
 
@@ -339,5 +339,10 @@
     Public Sub Avoid() Implements IWorldModel.Avoid
         Dim item = World.Avatar.Items.First(Function(x) x.ItemType = ItemTypes.Avoidance)
         World.Avatar.RemoveItem(item)
+    End Sub
+
+    Public Sub TurnAround() Implements IWorldModel.TurnAround
+        TurnRight()
+        TurnRight()
     End Sub
 End Class

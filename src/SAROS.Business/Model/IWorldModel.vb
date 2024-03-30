@@ -43,4 +43,5 @@
     ReadOnly Property SectionName As String
     ReadOnly Property CanAvoid As Boolean
     Sub Avoid()
+    Sub TurnAround()
 End Interface
