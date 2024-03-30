@@ -14,7 +14,10 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill(0)
         Dim uifont = Context.Font(UIFontName)
-        uifont.WriteText(displayBuffer, (0, 0), "You have gone mad!", 15)
-        uifont.WriteText(displayBuffer, (0, 8), "Nothing matters.", 15)
+        Dim text = "You have gone mad!"
+        uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, ViewHeight \ 3 - uifont.HalfHeight), text, 4)
+        text = "Nothing matters."
+        uifont.WriteText(displayBuffer, ((ViewWidth - uifont.TextWidth(text)) \ 2, 2 * ViewHeight \ 3 - uifont.HalfHeight), text, 4)
+        Context.ShowStatusBar(displayBuffer, uifont, "(A)/Space: Continue", 0, 7)
     End Sub
 End Class
