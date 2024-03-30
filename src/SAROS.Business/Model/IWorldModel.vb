@@ -44,4 +44,5 @@
     ReadOnly Property CanAvoid As Boolean
     Sub Avoid()
     Sub TurnAround()
+    ReadOnly Property TraumaStates As IEnumerable(Of (Trauma As String, Awareness As Integer, TriggerLevel As Integer))
 End Interface

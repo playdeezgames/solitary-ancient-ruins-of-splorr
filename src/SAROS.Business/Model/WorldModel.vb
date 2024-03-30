@@ -297,6 +297,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property TraumaStates As IEnumerable(Of (Trauma As String, Awareness As Integer, TriggerLevel As Integer)) Implements IWorldModel.TraumaStates
+        Get
+            Return Traumas.All.Select(Function(x) (x, World.Avatar.GetAwarenessLevel(x), World.Avatar.GetTriggerLevel(x)))
+        End Get
+    End Property
+
     Public Sub CompleteCombat() Implements IWorldModel.CompleteCombat
         If Not IsBoardCellVisible(BoardColumn, BoardRow) Then
             World.Avatar.SetAwarenessLevel(Trauma, World.Avatar.GetAwarenessLevel(Trauma) + 1)
