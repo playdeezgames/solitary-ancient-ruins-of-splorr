@@ -61,6 +61,8 @@ Module Program
     {
         {AOS.UI.Command.A, Function(gamePad) gamePad.IsButtonDown(Buttons.A)},
         {AOS.UI.Command.B, Function(gamePad) gamePad.IsButtonDown(Buttons.B)},
+        {AOS.UI.Command.Start, Function(gamePad) gamePad.IsButtonDown(Buttons.Start)},
+        {AOS.UI.Command.Select, Function(gamePad) gamePad.IsButtonDown(Buttons.Back)},
         {AOS.UI.Command.Up, Function(gamePad) gamePad.DPad.Up = ButtonState.Pressed},
         {AOS.UI.Command.Down, Function(gamePad) gamePad.DPad.Down = ButtonState.Pressed},
         {AOS.UI.Command.Left, Function(gamePad) gamePad.DPad.Left = ButtonState.Pressed},

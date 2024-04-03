@@ -1,7 +1,8 @@
 {
   "Space": "A",
-  "Enter": "A",
+  "Enter": "Start",
   "Escape": "B",
+  "Tab": "Select",
   "NumPad0": "B",
   "Up": "Up",
   "W": "Up",
